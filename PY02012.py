@@ -1,22 +1,32 @@
-if __name__ == "__main__":
-    n = int(input())
-    a = []
-    while len(a) < n: 
-        a.append(int(i) for i in input().split())
-    c = []
-    l = []
-    for i in a:
-        if(i % 2 == 0): c.append(i)
-        else: l.append(i)
-    c.sort()
-    l.sort()
-    i = 0
-    j = len(l) - 1
-    for x in a:
-        if(x % 2 == 0): 
-            print(c[i], end = ' ')
-            i+=1
-        else: 
-            print(l[j],end = ' ')
-            j-=1
-    print()
+import functools
+
+
+def cmp(a, b):
+    if a < b:
+        return 1
+    else:
+        return -1
+
+
+n = int(input())
+a, b, c, d = [], [], [], [0] * n
+while True:
+    x = [int(x) for x in input().split()]
+    a += x
+    if len(a) == n:
+        break
+for i in range(n):
+    if a[i] % 2 == 1:
+        b.append(a[i])
+        d[i] = 1
+    else:
+        c.append(a[i])
+b = sorted(b)
+c = sorted(c, key=functools.cmp_to_key(cmp))
+for i in range(n):
+    if d[i] == 1:
+        print(b[-1], end=" ")
+        b.pop()
+    else:
+        print(c[-1], end=" ")
+        c.pop()
